@@ -9,7 +9,7 @@ SECRET_KEY = 'django-insecure-12345'
 DEBUG = True
 
 # ALLOWED_HOSTS = ['*']
-ALLOWED_HOSTS = ['akbms.onrender.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'akbms.onrender.com']
 # ALLOWED_HOSTS = ['student_form_app.onrender.com']
 
 INSTALLED_APPS = [
@@ -53,6 +53,10 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'student_form_app.wsgi.application'
+# DATABASES = {
+# #     'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
+# # }
+
 
 # DATABASES = {
 #     'default': {
@@ -64,16 +68,20 @@ WSGI_APPLICATION = 'student_form_app.wsgi.application'
 #         'PORT': os.environ.get('DB_PORT', '5432'),
 #     }
 # }
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-DATABASES = {
-    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
-}
+DATABASE_URL = os.getenv("DATABASE_URL")
 
+if DATABASE_URL:
+    DATABASES = {
+        'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / "db.sqlite3",
+        }
+    }
+# 
 AUTH_PASSWORD_VALIDATORS = []
 
 LANGUAGE_CODE = 'en-us'
@@ -90,7 +98,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+# DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 # Static files config
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')

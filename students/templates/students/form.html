@@ -1,12 +1,112 @@
 <!DOCTYPE html>
-<html>
-<head><title>Student Form</title></head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Form</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #8e44ad;
+            font-size: 20px;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select,
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        input[type="submit"] {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 18px;
+            border: none;
+            border-radius: 6px;
+            margin-top: 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
 <body>
-    <h2>Enter Student Details</h2>
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Submit</button>
-    </form>
+
+    <h1>ಅಖಿಲ ಕರ್ನಾಟಕ ಬ್ರಾಹ್ಮಣ ಮಹಾಸಭಾ</h1>
+    <h2>ಪ್ರತಿಭಾ ಪುರಸ್ಕಾರ - 2025</h2>
+
+    <div class="container">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" required>
+
+            <label for="father_name">Father name:</label>
+            <input type="text" name="father_name" id="father_name" required>
+
+            <label for="percentage">Percentage:</label>
+            <input type="number" name="percentage" id="percentage" step="0.01" required>
+
+            <label for="city">City:</label>
+            <input type="text" name="city" id="city" required>
+
+            <label for="Phone Number">Phone Number:</label>
+<input type="text" name="phone" id="phone"  pattern="[0-9]{10}" >
+
+
+            <label for="exam_type">Exam type:</label>
+            <select name="exam_type" id="exam_type" required>
+                <option value="10th">10th</option>
+                <option value="12th">12th</option>
+                <option value="Degree">Degree</option>
+            </select>
+
+            <label for="photo">Photo:</label>
+            <input type="file" name="photo" id="photo" required>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
 </body>
 </html>
