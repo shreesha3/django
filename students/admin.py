@@ -5,4 +5,4 @@ from .models import Student  # Adjust if your model is in a different location
 # class StudentAdmin(ExportMixin, admin.ModelAdmin):
 #     list_display = ('name', 'percentage')  # Replace with your actual field names
 
-admin.site.register(Student, StudentAdmin)
+admin.site.register(Student)
