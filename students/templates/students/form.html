@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,6 +43,11 @@
             font-weight: bold;
         }
 
+        .required::after {
+            content: " *";
+            color: red;
+        }
+
         input[type="text"],
         input[type="number"],
         select,
@@ -52,6 +58,7 @@
             border: 1px solid #ccc;
             border-radius: 6px;
             font-size: 14px;
+            box-sizing: border-box;
         }
 
         input[type="submit"] {
@@ -60,17 +67,28 @@
             padding: 12px 18px;
             border: none;
             border-radius: 6px;
-            margin-top: 20px;
+            margin-top: 25px;
             font-size: 16px;
             cursor: pointer;
+            width: 100%;
         }
 
         input[type="submit"]:hover {
             background-color: #2980b9;
         }
+
+        .banner {
+            width: 100%;
+            max-width: 950px;
+            height: auto;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
+
+    <img src="{% static 'images/header_banner.png' %}" alt="Banner" class="banner">
 
     <h1>ಅಖಿಲ ಕರ್ನಾಟಕ ಬ್ರಾಹ್ಮಣ ಮಹಾಸಭಾ</h1>
     <h2>ಪ್ರತಿಭಾ ಪುರಸ್ಕಾರ - 2025</h2>
@@ -78,30 +96,31 @@
     <div class="container">
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            <label for="name">Name:</label>
+            
+            <label for="name" class="required">Name:</label>
             <input type="text" name="name" id="name" required>
 
-            <label for="father_name">Father name:</label>
+            <label for="father_name" class="required">Father name:</label>
             <input type="text" name="father_name" id="father_name" required>
 
-            <label for="percentage">Percentage:</label>
+            <label for="percentage" class="required">Percentage:</label>
             <input type="number" name="percentage" id="percentage" step="0.01" required>
 
-            <label for="city">City:</label>
+            <label for="city" class="required">City:</label>
             <input type="text" name="city" id="city" required>
 
-            <label for="id_phone_number">Phone Number:</label>
-    <input type="text" name="phone_number" maxlength="15" required id="id_phone_number" class="form-control">
+            <label for="id_phone_number" class="required">Phone Number:</label>
+            <input type="text" name="phone_number" maxlength="15" required id="id_phone_number">
 
-
-            <label for="exam_type">Exam type:</label>
+            <label for="exam_type" class="required">Exam type:</label>
             <select name="exam_type" id="exam_type" required>
+                <option value="">-- Select --</option>
                 <option value="10th">10th</option>
                 <option value="12th">12th</option>
                 <option value="Degree">Degree</option>
             </select>
 
-            <label for="photo">Photo:</label>
+            <label for="photo" class="required">Photo:</label>
             <input type="file" name="photo" id="photo" required>
 
             <input type="submit" value="Submit">
