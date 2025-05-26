@@ -7,6 +7,7 @@ class Student(models.Model):
     ]
     name = models.CharField(max_length=100)
     father_name = models.CharField(max_length=100)
+    phone_number = models.CharField(max_length=15)
     percentage = models.DecimalField(max_digits=5, decimal_places=2)
     city = models.CharField(max_length=100)
     exam_type = models.CharField(max_length=4, choices=EXAM_CHOICES)
